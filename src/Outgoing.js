@@ -22,7 +22,7 @@ class Outgoing {
   }
 
   hangup() {
-    RNReactNativePlivo.unmute(this._callUUID);
+    RNReactNativePlivo.hangup(this._callUUID);
   }
 
 }

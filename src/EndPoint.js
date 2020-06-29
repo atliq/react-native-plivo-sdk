@@ -130,6 +130,7 @@ class EndPoint {
   }
 
   login(username, password, fcmToken, certificateId) {
+    // fcmToken will be device token in case of iOS
     RNReactNativePlivo.login(username, password, fcmToken, certificateId);
 
   }

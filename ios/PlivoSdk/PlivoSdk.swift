@@ -11,23 +11,44 @@ import PlivoVoiceKit
 
 
 @objc(PlivoSdk)
-class PlivoSdk: NSObject {
-
+class PlivoSdk: RCTEventEmitter {
+    
+    var hasListeners : Bool = false
+    
     var endpoint: PlivoEndpoint = PlivoEndpoint(["debug": true])
-    private var outCall: PlivoOutgoing?
-
-    @objc static func requiresMainQueueSetup() -> Bool {
-        return false
+        
+    override init() {
+        super.init()
+        print("PlivoSdk ReactNativeEventEmitter init")
     }
 
+    override static func requiresMainQueueSetup() -> Bool {
+        return true
+    }
 
-    // To register with SIP Server using device token
-    // @objc(login:userName:password:token:certificateId:resolver:rejecter:)
-    // func login(withUserName userName: String,
-    //             andPassword password: String,
-    //             deviceToken token: Data) {
-    //     endpoint.login(userName, andPassword: password, deviceToken: token)
-    // }
+    // we need to override this method and
+    // return an array of event names that we can listen to
+    override func supportedEvents() -> [String]! {
+        return ["Plivo-onIncomingCall", "Plivo-onLogin", "Plivo-onLoginFailed", "Plivo-onLogout", "Plivo-onIncomingCallHangup", "Plivo-onIncomingCallRejected", "Plivo-onOutgoingCall", "Plivo-onOutgoingCallAnswered", "Plivo-onOutgoingCallRejected", "Plivo-onOutgoingCallHangup", "Plivo-onOutgoingCallInvalid" ]
+    }
+    
+    override func startObserving() {
+        print("PlivoSdk ReactNativeEventEmitter startObserving")
+        
+        hasListeners = true
+        
+        super.startObserving()
+    }
+    
+    
+    override func stopObserving() {
+        print("PlivoSdk ReactNativeEventEmitter stopObserving")
+        
+        hasListeners = false
+                
+        super.stopObserving()
+    }
+
 
     @objc(login:password:token:certificateId:)
     func login(
@@ -38,6 +59,6 @@ class PlivoSdk: NSObject {
         )
         -> Void {
         let tokenData = Data(token.utf8)
-            endpoint.login(userName, andPassword: password, deviceToken: tokenData, certificateId: certificateId)
+        endpoint.login(userName, andPassword: password, deviceToken: tokenData, certificateId: certificateId)
     }
 }

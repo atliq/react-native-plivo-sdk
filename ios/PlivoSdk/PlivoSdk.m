@@ -12,4 +12,8 @@ RCT_EXTERN_METHOD(login:(nonnull NSString *)userName
                   certificateId:(nonnull NSString *)certificateId
                   )
 
+RCT_EXTERN_METHOD(call:(nonnull NSString *)dest
+                    headers:(NSDictionary *)headers
+                  )
+
 @end

@@ -16,6 +16,8 @@ class PlivoSdk: RCTEventEmitter {
     var hasListeners : Bool = false
     
     var endpoint: PlivoEndpoint = PlivoEndpoint(["debug": true])
+
+    private var outCall: PlivoOutgoing?
         
     override init() {
         super.init()
@@ -60,5 +62,23 @@ class PlivoSdk: RCTEventEmitter {
         -> Void {
         let tokenData = Data(token.utf8)
         endpoint.login(userName, andPassword: password, deviceToken: tokenData, certificateId: certificateId)
+    }
+
+    @objc(call:headers:)
+    func call(withDest dest: String, andHeaders headers: NSDictionary) -> PlivoOutgoing {
+
+        let extraHeaders: [AnyHashable: Any] = [:]
+
+        var error: NSError?
+
+        // var error = NSError(domain: "com.cloint.app", code: 0, userInfo: [NSLocalizedDescriptionKey: "message"])
+
+        /* construct SIP URI , where kENDPOINTURL is a contant contaning domain name details*/
+        let sipUri: String = "sip:\(dest)\\phone.plivo.com"
+        /* create PlivoOutgoing object */
+        outCall = (endpoint.createOutgoingCall())!
+        /* do the call */
+        outCall?.call(sipUri, headers: extraHeaders, error: &error)
+        return outCall!
     }
 }

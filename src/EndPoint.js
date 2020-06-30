@@ -1,7 +1,7 @@
 import RNReactNatPLIivePlivo from "./RNReactNativePlivo";
 import { SharedEventEmitter } from './events';
-import Incoming from "react-native-plivo/src/Incoming";
-import Outgoing from "react-native-plivo/src/Outgoing";
+import Incoming from "react-native-plivo-sdk/src/Incoming";
+import Outgoing from "react-native-plivo-sdk/src/Outgoing";
 
 class EndPoint {
   _isLoggedIn = false;

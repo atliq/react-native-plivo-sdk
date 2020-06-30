@@ -22,14 +22,14 @@ class PlivoSdk: NSObject {
 
 
     // To register with SIP Server using device token
-    @objc(login:userName:password:token:certificateId:resolver:rejecter:)
-    func login(withUserName userName: String,
-                andPassword password: String,
-                deviceToken token: Data) {
-        endpoint.login(userName, andPassword: password, deviceToken: token)
-    }
+    // @objc(login:userName:password:token:certificateId:resolver:rejecter:)
+    // func login(withUserName userName: String,
+    //             andPassword password: String,
+    //             deviceToken token: Data) {
+    //     endpoint.login(userName, andPassword: password, deviceToken: token)
+    // }
 
-    @objc(login:userName:password:token:certificateId:)
+    @objc(login:password:token:certificateId:)
     func login(
         withUserName userName: String,
         andPassword password: String,
@@ -37,9 +37,7 @@ class PlivoSdk: NSObject {
         certificateId certificateId: String
         )
         -> Void {
-        if let endpoint = endpoint {
-            let tokenData = Data(token.utf8)
+        let tokenData = Data(token.utf8)
             endpoint.login(userName, andPassword: password, deviceToken: tokenData, certificateId: certificateId)
-        }
     }
 }

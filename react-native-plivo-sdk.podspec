@@ -18,6 +18,9 @@ Pod::Spec.new do |s|
 
   s.dependency "React-Core"
   s.dependency "PlivoVoiceKit", '~> 2.1'
+    
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then

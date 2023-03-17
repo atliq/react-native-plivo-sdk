@@ -7,6 +7,7 @@
   "files": [
     "README.md",
     "android",
+    "src",
     "index.js",
     "ios",
     "react-native-plivo-sdk.podspec"

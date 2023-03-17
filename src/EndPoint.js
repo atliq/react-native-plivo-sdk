@@ -1,4 +1,4 @@
-import RNReactNatPLIivePlivo from "./RNReactNativePlivo";
+import RNReactNativePlivo from "./RNReactNativePlivo";
 import { SharedEventEmitter } from './events';
 import Incoming from "react-native-plivo-sdk/src/Incoming";
 import Outgoing from "react-native-plivo-sdk/src/Outgoing";
@@ -160,73 +160,73 @@ class EndPoint {
     if (typeof listener !== "function") {
       throw new Error("onIncomingCall require a function");
     }
-    SharedEventEmitter.addListener('onIncomingCall', listener);
-    return () => SharedEventEmitter.removeListener('onIncomingCall', listener);
+   const onIncomingCallListener = SharedEventEmitter.addListener('onIncomingCall', listener);
+    return () => onIncomingCallListener.remove();
   }
 
   onLogin(listener) {
     if (typeof listener !== "function") {
       throw new Error("onLogin require a function");
     }
-    SharedEventEmitter.addListener('onLogin', listener);
-    return () => SharedEventEmitter.removeListener('onLogin', listener);
+    const onLoginListener = SharedEventEmitter.addListener('onLogin', listener);
+    return () => onLoginListener.remove();
   }
 
   onLoginFailed(listener) {
     if (typeof listener !== "function") {
       throw new Error("onLoginFailed require a function");
     }
-    SharedEventEmitter.addListener('onLoginFailed', listener);
-    return () => SharedEggventEmitter.removeListener('onLoginFailed', listener);
+    const onLoginFailedListener = SharedEventEmitter.addListener('onLoginFailed', listener);
+    return () => onLoginFailedListener.remove();
   }
   onIncomingCallHangup(listener) {
     if (typeof listener !== "function") {
       throw new Error("onIncomingCallHangup require a function");
     }
     SharedEventEmitter.addListener('onIncomingCallHangup', listener);
-    return () => SharedEventEmitter.removeListener('onIncomingCallHangup', listener);
+    return () => SharedEventEmitter.remove('onIncomingCallHangup', listener);
   }
   onIncomingCallRejected(listener) {
     if (typeof listener !== "function") {
       throw new Error("onIncomingCallRejected require a function");
     }
-    SharedEventEmitter.addListener('onIncomingCallRejected', listener);
-    return () => SharedEventEmitter.removeListener('onIncomingCallRejected', listener);
+    const onIncomingCallRejectedListener = SharedEventEmitter.addListener('onIncomingCallRejected', listener);
+    return () => onIncomingCallRejectedListener.remove();
   }
   onOutgoingCall(listener) {
     if (typeof listener !== "function") {
       throw new Error("onOutgoingCall require a function");
     }
-    SharedEventEmitter.addListener('onOutgoingCall', listener);
-    return () => SharedEventEmitter.removeListener('onOutgoingCall', listener);
+    const onOutgoingCallListener = SharedEventEmitter.addListener('onOutgoingCall', listener);
+    return () => onOutgoingCallListener.remove();
   }
   onOutgoingCallAnswered(listener) {
     if (typeof listener !== "function") {
       throw new Error("onOutgoingCallAnswered require a function");
     }
-    SharedEventEmitter.addListener('onOutgoingCallAnswered', listener);
-    return () => SharedEventEmitter.removeListener('onOutgoingCallAnswered', listener);
+    const onOutgoingCallAnsweredListener = SharedEventEmitter.addListener('onOutgoingCallAnswered', listener);
+    return () => onOutgoingCallAnsweredListener.remove();
   }
   onOutgoingCallRejected(listener) {
     if (typeof listener !== "function") {
       throw new Error("onOutgoingCallRejected require a function");
     }
-    SharedEventEmitter.addListener('onOutgoingCallRejected', listener);
-    return () => SharedEventEmitter.removeListener('onOutgoingCallRejected', listener);
+    const onOutgoingCallRejectedListener = SharedEventEmitter.addListener('onOutgoingCallRejected', listener);
+    return () => onOutgoingCallRejectedListener.remove();
   }
   onOutgoingCallHangup(listener) {
     if (typeof listener !== "function") {
       throw new Error("onOutgoingCallHangup require a function");
     }
-    SharedEventEmitter.addListener('onOutgoingCallHangup', listener);
-    return () => SharedEventEmitter.removeListener('onOutgoingCallHangup', listener);
+    const onOutgoingCallHangupListener = SharedEventEmitter.addListener('onOutgoingCallHangup', listener);
+    return () => onOutgoingCallHangupListener.remove();
   }
   onOutgoingCallInvalid(listener) {
     if (typeof listener !== "function") {
       throw new Error("onOutgoingCallInvalid require a function");
     }
-    SharedEventEmitter.addListener('onOutgoingCallInvalid', listener);
-    return () => SharedEventEmitter.removeListener('onOutgoingCallInvalid', listener);
+   const onOutgoingCallInvalidListener = SharedEventEmitter.addListener('onOutgoingCallInvalid', listener);
+    return () => onOutgoingCallInvalidListener.remove();
   }
 
 }

@@ -1,10 +1,5 @@
 package com.reactlibrary;
 
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,7 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -230,6 +225,11 @@ public class PlivoSdkModule extends ReactContextBaseJavaModule implements EventL
         WritableMap params = Arguments.createMap();
         params.putString("callUUID", outgoing.getCallId());
         sendEvent(reactContext, "Plivo-onOutgoingCall", params);
+    }
+
+    @Override
+    public void onOutgoingCallRinging(Outgoing outgoing) {
+
     }
 
     @Override
